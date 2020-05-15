@@ -32,6 +32,9 @@ function getUserInfo() {
             .css('display', 'inline-block')
             .text(name.substr(0, 1).toUpperCase());
         }
+      } else if (res.status === 1 && res.message === '身份认证失败！') {
+        localStorage.removeItem('token');
+        location.href = '/login.html';
       }
     },
   });
