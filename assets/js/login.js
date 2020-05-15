@@ -38,4 +38,23 @@ $(function () {
       }
     },
   });
+  // -------------------完成登录功能------------------
+  $('#login form').on('submit', function (e) {
+    // 监听表单提交事件
+    e.preventDefault();
+    // 阻止默认行为
+    // 获取账号和密码
+    $.ajax({
+      type: 'POST',
+      url: 'http://www.liulongbin.top:3007/api/login',
+      data: $(this).serialize(),
+      success: function (res) {
+        alert(res.message);
+        if (res.status == 0) {
+          location.href = '/index.html';
+        }
+      },
+    });
+    // ajax提交到端口
+  });
 });
