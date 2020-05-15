@@ -19,7 +19,8 @@ $(function () {
       url: 'http://www.liulongbin.top:3007/api/reguser',
       data: data,
       success: function (res) {
-        alert(res.message);
+        layer.msg(res.message);
+
         if (res.status == 0) {
           $('#register').hide().prev().show();
         }
@@ -49,8 +50,10 @@ $(function () {
       url: 'http://www.liulongbin.top:3007/api/login',
       data: $(this).serialize(),
       success: function (res) {
-        alert(res.message);
+        layer.msg(res.message);
         if (res.status == 0) {
+          // 吧token保存到本地存储
+          localStorage.setItem('token', res.token);
           location.href = '/index.html';
         }
       },
